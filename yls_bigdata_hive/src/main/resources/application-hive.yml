@@ -1,0 +1,8 @@
+spring:
+  datasource:
+    hive: #hive数据源
+      url: jdbc:hive2://192.168.133.101:10000/
+      type: com.alibaba.druid.pool.DruidDataSource
+      username: user
+      password: user
+      driver-class-name: org.apache.hive.jdbc.HiveDriver

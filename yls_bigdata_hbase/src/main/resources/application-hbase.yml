@@ -1,0 +1,15 @@
+hbase:
+  zookeeper:
+    quorum: 192.168.133.101,192.168.133.102,192.168.133.103
+    property:
+       clientPort: 2181
+
+       
+spring:
+  datasource:
+    phoenix: #phoenix数据源
+      url: jdbc:phoenix:192.168.133.101:2181/opt/hbase-2.1.8
+      type: com.alibaba.druid.pool.DruidDataSource
+      username: user
+      password: user
+      driver-class-name: org.apache.phoenix.jdbc.PhoenixDriver

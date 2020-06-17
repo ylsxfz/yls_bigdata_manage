@@ -1,0 +1,124 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>org.springframework.boot</groupId>
+        <artifactId>spring-boot-starter-parent</artifactId>
+        <version>2.0.5.RELEASE</version>
+        <relativePath/> <!-- lookup parent from repository -->
+    </parent>
+
+    <!--管理项目，修改jar为pom-->
+    <groupId>com.bigdata</groupId>
+    <artifactId>yls_bigdata_manage</artifactId>
+    <version>0.0.1-SNAPSHOT</version>
+    <name>yls_bigdata_manage</name>
+    <description>yls bigdata for Spring Boot</description>
+    <packaging>pom</packaging>
+
+    <!--注入子模块-->
+    <modules>
+        <!--应用模块-->
+        <module>yls_base_apply</module>
+        <!--公用工具类-->
+        <module>yls_base_common</module>
+        <!--静态资源-->
+        <module>yls_base_static</module>
+        <!--大数据模块-->
+        <!--hadoop-hdfs-->
+        <module>yls_bigdata_hdfs</module>
+    </modules>
+
+    <properties>
+        <java.version>1.8</java.version>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <project.reporting.outputEncoding>UTF-8</project.reporting.outputEncoding>
+        <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <!-- ES -->
+        <elasticsearch.version>6.4.0</elasticsearch.version>
+        <!-- storm -->
+        <storm.version>2.0.0</storm.version>
+        <!-- hadoop -->
+        <hadoop.version>2.6.0</hadoop.version>
+        <!-- spark -->
+        <spark.version>2.3.0</spark.version>
+        <!-- hive -->
+        <hive.version>2.3.0</hive.version>
+        <!-- kafka -->
+        <kafka.version>2.2.0</kafka.version>
+        <!-- hbase -->
+        <hbase.version>2.1.8</hbase.version>
+        <!-- hbase-phoenix -->
+        <phoenix.version>5.0.0-HBase-2.0</phoenix.version>
+        <!-- zookeeper -->
+        <zookeeper.version>3.4.13</zookeeper.version>
+        <curator.version>2.7.0</curator.version>
+    </properties>
+
+    <dependencies>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-thymeleaf</artifactId>
+            <exclusions>
+                <exclusion>
+                    <artifactId>slf4j-api</artifactId>
+                    <groupId>org.slf4j</groupId>
+                </exclusion>
+                <exclusion>
+                    <artifactId>spring-boot-starter-logging</artifactId>
+                    <groupId>org.springframework.boot</groupId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-web</artifactId>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.apache.logging.log4j</groupId>
+                    <artifactId>log4j-to-slf4j</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-configuration-processor</artifactId>
+            <optional>true</optional>
+        </dependency>
+
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-test</artifactId>
+            <scope>test</scope>
+            <exclusions>
+                <exclusion>
+                    <groupId>org.junit.vintage</groupId>
+                    <artifactId>junit-vintage-engine</artifactId>
+                </exclusion>
+            </exclusions>
+        </dependency>
+
+        <dependency>
+            <groupId>org.junit.jupiter</groupId>
+            <artifactId>junit-jupiter</artifactId>
+            <version>RELEASE</version>
+            <scope>test</scope>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.apache.maven.plugins</groupId>
+                <artifactId>maven-compiler-plugin</artifactId>
+                <version>3.1</version>
+                <configuration>
+                    <source>${java.version}</source>
+                    <target>${java.version}</target>
+                </configuration>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>

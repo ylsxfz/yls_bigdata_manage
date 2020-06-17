@@ -1,0 +1,23 @@
+#springboot整合的kafka
+spring:
+  kafka:
+    #制定kafka代理地址
+    bootstrap-servers: node004:9092,node005:9092,node006:9092 #指定kafka server的地址，集群配多个，中间，逗号隔开
+    producer:
+      #消息发送失败重试次数
+      #retries: 0
+      #每次批量发送消息的数量
+      #batch-size: 16384
+      #每次批量发送消息的缓冲区大小
+      #buffer-memory: 335554432
+      # 指定消息key和消息体的编解码方式
+      key-serializer: org.apache.kafka.common.serialization.StringSerializer
+      value-serializer: org.apache.kafka.common.serialization.StringSerializer
+    consumer:
+      group-id: group1 #群组ID
+      enable-auto-commit: true
+      auto-commit-interval: 1000
+      # 指定消息key和消息体的编解码方式
+      key-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      value-deserializer: org.apache.kafka.common.serialization.StringDeserializer
+      bootstrap-servers:

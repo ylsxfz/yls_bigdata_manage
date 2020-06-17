@@ -1,0 +1,23 @@
+#开发测试环境
+spring:
+  servlet:
+    multipart:
+    max-file-size: 2MB
+    max-request-size: 2MB
+  datasource:
+    commonconfig: #连接池统一配置，应用到所有的数据源
+      initialSize: 1
+      minIdle: 1
+      maxIdle: 5
+      maxActive: 50
+      maxWait: 10000
+      timeBetweenEvictionRunsMillis: 10000
+      minEvictableIdleTimeMillis: 300000
+      validationQuery: select 'x'
+      testWhileIdle: true
+      testOnBorrow: false
+      testOnReturn: false
+      poolPreparedStatements: true
+      maxOpenPreparedStatements: 20
+      filters: stat
+      

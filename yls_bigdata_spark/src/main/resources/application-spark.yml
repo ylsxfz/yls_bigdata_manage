@@ -1,0 +1,43 @@
+##SPARK相关配置
+spark:
+  ##运行模式
+  master: yarn
+  submit:
+    ##集群模式还是客户端模式：cluster/client
+    deployMode: cluster
+  ##每个executor的运行参数
+  executor:
+    ##每个executor占用的CPU核数
+    cores: 1
+    ##每个executor占用的内存大小
+    memory: 128M
+    ##SPARK executor个数，启动时最少是这么大
+    instances: 2
+  ##启动SPark的driver运行参数
+  driver:
+    #启动SPark的driver需要的内存
+    memory: 256M
+    # driver的CPU核数
+    cores: 1
+  storage:
+    memoryFraction: 0.5
+  shuffle:
+    memoryFraction: 0.3
+  default:
+    parallelism: 1000
+  yarn:
+    preserve:
+      staging:
+        files: true
+    ##spark作业运行时的缓存目录，当前配置在HDFS上
+    stagingDir: hdfs://192.168.133.101:9000/user/user/
+    ##spark作业运行时的依赖jar包，统一放在HDFS上，防止每次提交任务都要打包依赖JAR
+    jars: hdfs://192.168.133.101:9000/sparkExtraLib/
+    ##spark运行时的环境变量相关参数
+    appMasterEnv:
+      hadoop_user_name: hdfs
+  hadoop:
+    yarn:
+      resourcemanager:
+        hostname: 192.168.133.101
+        address: 192.168.133.101:8032

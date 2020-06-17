@@ -1,0 +1,66 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+         xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 https://maven.apache.org/xsd/maven-4.0.0.xsd">
+    <modelVersion>4.0.0</modelVersion>
+    <parent>
+        <groupId>com.bigdata</groupId>
+        <artifactId>yls_bigdata_manage</artifactId>
+        <version>0.0.1-SNAPSHOT</version>
+        <relativePath>../pom.xml</relativePath> <!-- lookup parent from repository -->
+    </parent>
+
+    <groupId>com.bigdata</groupId>
+    <artifactId>yls_apply</artifactId>
+    <name>yls_apply</name>
+    <description>Demo project for Spring Boot</description>
+
+    <dependencies>
+        <!--加入其它依赖的模块-->
+        <dependency>
+            <groupId>com.bigdata</groupId>
+            <artifactId>yls_common</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+        </dependency>
+        <dependency>
+            <groupId>com.bigdata</groupId>
+            <artifactId>yls_static</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <!--因为static是war打包方式，所以必须声明，不然默认是jar打包方式-->
+            <type>war</type>
+        </dependency>
+        <!-- webservices -->
+        <dependency>
+            <groupId>org.apache.cxf</groupId>
+            <artifactId>cxf-spring-boot-starter-jaxws</artifactId>
+            <version>3.2.5</version>
+        </dependency>
+        <!--spring boot webSocket 的依赖包 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
+        </dependency>
+    </dependencies>
+
+    <build>
+        <plugins>
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <!-- 当所依赖的其他模块，有启动类的时候，需要以下配置，指定唯一启动类，
+                       本次事例未涉及其他模块有启动类，可自行测试 -->
+                <configuration>
+                    <mainClass>com.bigdata.yls_apply.YlsApplyApplication</mainClass>
+                    <layout>ZIP</layout>
+                </configuration>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>repackage</goal><!--可以把依赖的包都打包到生成的Jar包中-->
+                        </goals>
+                    </execution>
+                </executions>
+            </plugin>
+        </plugins>
+    </build>
+
+</project>
